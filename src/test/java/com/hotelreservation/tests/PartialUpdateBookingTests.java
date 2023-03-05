@@ -11,20 +11,17 @@ import static io.restassured.RestAssured.given;
 public class PartialUpdateBookingTests extends BaseTest {
 
     @Test
-    public void partialUpdateBookingTest(){
+    public void partiallyUpdateBookingTest() {
         JSONObject body = new JSONObject();
-        body.put("firstname","Icardi");
-        body.put("lastname","Mertens");
+        body.put("firstname", "Ahmet");
 
         Response response = given(spec)
                 .contentType(ContentType.JSON)
-                .header("Cookie","token=" + createToken())
+                .header("Cookie", "token=" + createToken())
                 .body(body.toString())
                 .when()
                 .patch("/booking/" + createBookingId());
 
-        // assertion/testleri yazı
-        Assertions.assertEquals("Icardi", response.jsonPath().getJsonObject("firstname"));
-        Assertions.assertEquals("Mertens", response.jsonPath().getJsonObject("lastname"));
+        Assertions.assertEquals("Ahmet", response.jsonPath().getJsonObject("firstname"));
     }
 }

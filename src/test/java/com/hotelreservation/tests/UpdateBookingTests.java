@@ -7,26 +7,24 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class UpdateBookingTests extends BaseTest{
+public class UpdateBookingTests extends BaseTest {
 
     @Test
-    public void updateBookingTests(){
+    public void updateBookingTest() {
         // Request yap
         Response response = given(spec)
                 .contentType(ContentType.JSON)
                 .header("Cookie", "token=" + createToken())
-                .body(bookingObject("Fatih","Terim",1000,false))
-                .put("/booking/"+ createBookingId());
-
-        // Assertion/Test yaz
+                .body(bookingObject("Icardi", "Mertens", 500, false))
+                .put("/booking/" + createBookingId());
 
         String firstName = response.jsonPath().getJsonObject("firstname");
         String lastName = response.jsonPath().getJsonObject("lastname");
         int totalPrice = response.jsonPath().getJsonObject("totalprice");
 
-        Assertions.assertEquals("Fatih", firstName);
-        Assertions.assertEquals("Terim", lastName);
-        Assertions.assertEquals(1000, totalPrice);
-        Assertions.assertEquals(false,response.jsonPath().getJsonObject("depositpaid"));
+        Assertions.assertEquals("Icardi", firstName);
+        Assertions.assertEquals("Mertens", lastName);
+        Assertions.assertEquals(500, totalPrice);
+        Assertions.assertEquals(false, response.jsonPath().getJsonObject("depositpaid"));
     }
 }

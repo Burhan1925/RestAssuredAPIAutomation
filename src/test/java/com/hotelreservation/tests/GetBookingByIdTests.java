@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class GetBookingByIdTests extends BaseTest{
+public class GetBookingByIdTests extends BaseTest {
 
     @Test
-    public void getBookingById(){
+    public void getBookingById() {
         Response response = given(spec)
                 .when()
                 .get("/booking/" + createBookingId());
@@ -22,8 +22,8 @@ public class GetBookingByIdTests extends BaseTest{
         String lastname = response.jsonPath().getJsonObject("lastname");
         int totalprice = response.jsonPath().getJsonObject("totalprice");
 
-        Assertions.assertEquals("Burhan",firstname);
-        Assertions.assertEquals("Aydın",lastname);
-        Assertions.assertEquals(100,totalprice);
+        Assertions.assertEquals("Burhan", firstname);
+        Assertions.assertEquals("Aydın", lastname);
+        Assertions.assertEquals(200, totalprice);
     }
 }

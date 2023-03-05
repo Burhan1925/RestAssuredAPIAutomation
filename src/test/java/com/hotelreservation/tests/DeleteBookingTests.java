@@ -9,10 +9,10 @@ import static io.restassured.RestAssured.given;
 public class DeleteBookingTests extends BaseTest {
 
     @Test
-    public void deleteBookingTest(){
+    public void deleteBookingTest() {
         Response response = given(spec)
                 .contentType(ContentType.JSON)
-                .header("Cookie","token=" + createToken())
+                .header("Cookie", "token=" + createToken())
                 .when()
                 .delete("/booking/" + createBookingId());
 

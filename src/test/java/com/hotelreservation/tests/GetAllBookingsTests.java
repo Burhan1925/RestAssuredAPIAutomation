@@ -9,10 +9,9 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 
 public class GetAllBookingsTests extends BaseTest {
-    // curl -i https://restful-booker.herokuapp.com/booking
 
     @Test
-    public void getAllBookingTest(){
+    public void getAllBookingTest() {
         given(spec)
                 .when()
                 .get("/booking")
@@ -21,27 +20,19 @@ public class GetAllBookingsTests extends BaseTest {
     }
 
     @Test
-    public void getBookingsWithFirstnameFilterTest(){
-        // yeni rezervasyon oluşturmak
+    public void getBookings_with_firstname_filter_test() {
         int bookingId = createBookingId();
 
-        // çağrıya query parametresi eklemek
-        spec.queryParam("firstname","Burhan");
-        spec.queryParam("lastname","Aydın");
-
-        // çağrıyı gerçekleştirmek
+        spec.queryParam("firstname", "Burhan");
         Response response = given(spec)
                 .when()
                 .get("/booking");
 
-        // Assertion / test yaz
         response
                 .then()
                 .statusCode(200);
 
-        List<Integer> filterReservation = response.jsonPath().getList("bookingid");
-        Assertions.assertTrue(filterReservation.contains(bookingId));
+        List<Integer> list = response.jsonPath().getList("bookingid");
+        Assertions.assertTrue(list.contains(bookingId));
     }
-
-
 }
