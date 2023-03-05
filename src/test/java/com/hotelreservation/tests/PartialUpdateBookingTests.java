@@ -11,9 +11,9 @@ import static io.restassured.RestAssured.given;
 public class PartialUpdateBookingTests extends BaseTest {
 
     @Test
-    public void partiallyUpdateBookingTest() {
+    public void partialUpdateBookingTest() {
         JSONObject body = new JSONObject();
-        body.put("firstname", "Ahmet");
+        body.put("firstname", "Icardi");
 
         Response response = given(spec)
                 .contentType(ContentType.JSON)
@@ -22,6 +22,6 @@ public class PartialUpdateBookingTests extends BaseTest {
                 .when()
                 .patch("/booking/" + createBookingId());
 
-        Assertions.assertEquals("Ahmet", response.jsonPath().getJsonObject("firstname"));
+        Assertions.assertEquals("Icardi", response.jsonPath().getJsonObject("firstname"));
     }
 }

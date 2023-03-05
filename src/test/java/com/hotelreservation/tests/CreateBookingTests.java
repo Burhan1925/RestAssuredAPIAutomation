@@ -2,6 +2,7 @@ package com.hotelreservation.tests;
 
 import com.hotelreservation.models.Booking;
 import com.hotelreservation.models.BookingDates;
+import com.hotelreservation.models.BookingResponse;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
@@ -35,5 +36,11 @@ public class CreateBookingTests extends BaseTest {
         response
                 .then()
                 .statusCode(200);
+
+        BookingResponse bookingResponse = response.as(BookingResponse.class);
+
+        Assertions.assertEquals("Udemy", bookingResponse.getBooking().getFirstname());
+        Assertions.assertEquals("Kurs", bookingResponse.getBooking().getLastname());
+        Assertions.assertEquals("Tek kisilik yatak", bookingResponse.getBooking().getAdditionalneeds());
     }
 }

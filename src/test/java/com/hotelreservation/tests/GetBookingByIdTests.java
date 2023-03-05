@@ -25,5 +25,6 @@ public class GetBookingByIdTests extends BaseTest {
         Assertions.assertEquals("Burhan", firstname);
         Assertions.assertEquals("Aydın", lastname);
         Assertions.assertEquals(200, totalprice);
+
     }
 }

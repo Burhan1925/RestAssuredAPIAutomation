@@ -38,6 +38,7 @@ public class BaseTest {
                 .body(bookingObject("Burhan", "Aydın", 200, true))
                 .post("/booking");
 
+        //response.prettyPrint();
         response
                 .then()
                 .statusCode(200);
@@ -75,6 +76,7 @@ public class BaseTest {
                 .body(body.toString())
                 .post("/auth");
 
+        //response.prettyPrint();
         return response.jsonPath().getJsonObject("token");
     }
 }
